@@ -34,7 +34,7 @@ const onSubmit = async (event: { preventDefault: () => void }) => {
 
 <template>
   <main>
-    <div class="container">
+    <div class="container" :class="{ 'show-weather': weather !== null }">
       <div>
         <form @submit="onSubmit">
           <div class="input-group">
@@ -66,6 +66,15 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.3);
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
+
+  /*animation*/
+  transition: max-height 1s ease-in-out;
+  max-height: 100px;
+  overflow: hidden;
+
+  &.show-weather {
+    max-height: 1000px; /* adjust this value as needed */
+  }
 }
 .weather {
   margin-top: 20px;
