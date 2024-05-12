@@ -25,7 +25,7 @@ export async function getWeatherByCity(city: string) {
       weather_main: response.data.weather[0].main,
       weather_description: response.data.weather[0].description,
       timezone: response.data.timezone,
-      iconUrl: `/src/assets/weatherIcons/${response.data.weather[0].icon}.png`
+      iconUrl: `./src/assets/weatherIcons/${response.data.weather[0].icon}.png`
     }
 
     return datas
