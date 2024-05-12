@@ -1,4 +1,6 @@
 import axios from 'axios'
+// weatherIcons.ts
+import WeatherIcons from '@/utils/weatherIcons'
 
 export default interface WeatherDataI {
   name: string
@@ -13,7 +15,7 @@ export default interface WeatherDataI {
 
 const API_KEY = '8e8f5ab94e96e6bc444a243660e5ce13'
 
-export async function getWeatherByCity(city: string) {
+export async function getWeatherByCity(this: any, city: string) {
   try {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
     const response = await axios.get(url)
@@ -25,7 +27,7 @@ export async function getWeatherByCity(city: string) {
       weather_main: response.data.weather[0].main,
       weather_description: response.data.weather[0].description,
       timezone: response.data.timezone,
-      iconUrl: `./src/assets/weatherIcons/${response.data.weather[0].icon}.png`
+      iconUrl: WeatherIcons[response.data.weather[0].icon as keyof typeof WeatherIcons]
     }
 
     return datas
