@@ -14,6 +14,7 @@ let weather = ref<WeatherDataI | null>(null)
 
 onMounted(() => {
   gsap.from('.container', { opacity: 0, x: -100, duration: 1 })
+  gsap.from('.title', { opacity: 0, y: -50, duration: 1 })
 })
 watch(weather, () => {
   nextTick(() => {
@@ -34,6 +35,7 @@ const onSubmit = async (event: { preventDefault: () => void }) => {
 
 <template>
   <main>
+    <h1 class="title">Weather App</h1>
     <div class="container" :class="{ 'show-weather': weather !== null }">
       <div>
         <form @submit="onSubmit">
@@ -60,6 +62,12 @@ main {
   align-items: center;
   justify-content: center;
   height: 100vh;
+
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
 }
 .container {
   padding: 20px 30px;
